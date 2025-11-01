@@ -1,0 +1,628 @@
+/* ============================================
+   ULTIMATE COMPLETIONIST ACHIEVEMENT SYSTEM
+   styles.css
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Press Start 2P', cursive;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  color: #fff;
+}
+
+/* ============================================
+   MAIN CONTAINER
+   ============================================ */
+
+.demo-container {
+  text-align: center;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.demo-container h1 {
+  color: #FFD700;
+  font-size: 20px;
+  margin-bottom: 30px;
+  text-shadow: 3px 3px #000, 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* ============================================
+   DEMO BUTTONS
+   ============================================ */
+
+.demo-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.demo-btn {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  padding: 15px 25px;
+  background: linear-gradient(180deg, #6a6a6a 0%, #4a4a4a 100%);
+  color: #fff;
+  border: 3px solid #333;
+  cursor: pointer;
+  text-shadow: 2px 2px #000;
+  transition: all 0.2s;
+  box-shadow: 0 4px 0 #222;
+  position: relative;
+  top: 0;
+}
+
+.demo-btn:hover {
+  background: linear-gradient(180deg, #7a7a7a 0%, #5a5a5a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #222;
+}
+
+.demo-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #222;
+  top: 2px;
+}
+
+/* ============================================
+   STATS PANEL
+   ============================================ */
+
+.stats-panel {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 25px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid #555;
+  min-width: 150px;
+}
+
+.stat-label {
+  font-size: 8px;
+  color: #aaa;
+  margin-bottom: 8px;
+  text-shadow: 1px 1px #000;
+}
+
+.stat-value {
+  font-size: 14px;
+  color: #FFD700;
+  text-shadow: 2px 2px #000;
+}
+
+/* ============================================
+   PLANET SELECTOR
+   ============================================ */
+
+.planet-selector {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.planet-btn {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 9px;
+  padding: 12px 20px;
+  background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+  color: #fff;
+  border: 2px solid #555;
+  cursor: pointer;
+  text-shadow: 1px 1px #000;
+  transition: all 0.2s;
+  box-shadow: 0 3px 0 #111;
+  position: relative;
+  top: 0;
+}
+
+.planet-btn:hover {
+  background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+  border-color: #777;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 #111;
+}
+
+.planet-btn.active {
+  background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
+  border-color: #FFD700;
+  color: #FFD700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5), 0 3px 0 #111;
+  top: 0;
+}
+
+/* ============================================
+   ACHIEVEMENT LIST
+   ============================================ */
+
+.achievement-list {
+  max-width: 900px;
+  margin: 0 auto;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 3px solid #333;
+  border-radius: 5px;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.achievement-list::-webkit-scrollbar {
+  width: 12px;
+}
+
+.achievement-list::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border: 1px solid #333;
+}
+
+.achievement-list::-webkit-scrollbar-thumb {
+  background: #555;
+  border: 1px solid #333;
+}
+
+.achievement-list::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+.achievement-list h3 {
+  color: #FFD700;
+  font-size: 12px;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px #000;
+  text-align: center;
+}
+
+.tier-header {
+  color: #aaa;
+  font-size: 10px;
+  margin: 25px 0 12px 0;
+  text-shadow: 1px 1px #000;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #333;
+}
+
+/* ============================================
+   ACHIEVEMENT ITEM (In List)
+   ============================================ */
+
+.achievement-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid #444;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.achievement-item:hover {
+  background: rgba(0, 0, 0, 0.8);
+  border-color: #FFD700;
+  transform: translateX(5px);
+  box-shadow: -5px 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.achievement-item.locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}
+
+.achievement-item.locked:hover {
+  transform: none;
+  border-color: #444;
+  box-shadow: none;
+}
+
+.achievement-item.completed {
+  border-color: #4CAF50;
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.achievement-item.completed::after {
+  content: '✓';
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #4CAF50;
+  text-shadow: 0 0 10px rgba(76, 175, 80, 0.8);
+}
+
+.tier-badge {
+  font-size: 8px;
+  padding: 5px 10px;
+  background: #222;
+  border: 1px solid #444;
+  color: #aaa;
+  margin-left: auto;
+  white-space: nowrap;
+  text-shadow: 1px 1px #000;
+}
+
+/* ============================================
+   ACHIEVEMENT NOTIFICATION CONTAINER
+   ============================================ */
+
+.achievement-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* ============================================
+   ACHIEVEMENT NOTIFICATION BOX
+   ============================================ */
+
+.achievement {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 15px;
+  min-width: 320px;
+  max-width: 400px;
+  animation: slideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), 
+             slideOut 0.5s ease-in 4.5s forwards;
+  opacity: 0;
+  transform: translateX(450px);
+  filter: drop-shadow(6px 6px 0px rgba(0, 0, 0, 0.8));
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(450px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(450px);
+  }
+}
+
+/* ============================================
+   9-SLICE BORDER SYSTEM
+   Change the paths to match your image location
+   ============================================ */
+
+.achievement-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: 8px 1fr 8px;
+  grid-template-rows: 8px 1fr 8px;
+  pointer-events: none;
+  image-rendering: pixelated;
+}
+
+/* CORNERS */
+.border-topleft { 
+  grid-column: 1; 
+  grid-row: 1;
+  background: url('assets/borders/topleft.png') no-repeat;
+  background-size: contain;
+  width: 8px;
+  height: 8px;
+}
+
+.border-topright { 
+  grid-column: 3; 
+  grid-row: 1;
+  background: url('assets/borders/topright.png') no-repeat;
+  background-size: contain;
+  width: 8px;
+  height: 8px;
+}
+
+.border-bottomleft { 
+  grid-column: 1; 
+  grid-row: 3;
+  background: url('assets/borders/bottomleft.png') no-repeat;
+  background-size: contain;
+  width: 8px;
+  height: 8px;
+}
+
+.border-bottomright { 
+  grid-column: 3; 
+  grid-row: 3;
+  background: url('assets/borders/bottomright.png') no-repeat;
+  background-size: contain;
+  width: 8px;
+  height: 8px;
+}
+
+/* EDGES */
+.border-topmiddle { 
+  grid-column: 2; 
+  grid-row: 1;
+  background: url('assets/borders/topmiddle.png') repeat-x;
+  background-size: auto 8px;
+  height: 8px;
+}
+
+.border-bottommiddle { 
+  grid-column: 2; 
+  grid-row: 3;
+  background: url('assets/borders/bottommiddle.png') repeat-x;
+  background-size: auto 8px;
+  height: 8px;
+}
+
+.border-middleleft { 
+  grid-column: 1; 
+  grid-row: 2;
+  background: url('assets/borders/middleleft.png') repeat-y;
+  background-size: 8px auto;
+  width: 8px;
+}
+
+.border-middleright { 
+  grid-column: 3; 
+  grid-row: 2;
+  background: url('assets/borders/middleright.png') repeat-y;
+  background-size: 8px auto;
+  width: 8px;
+}
+
+/* CENTER */
+.border-middlemiddle { 
+  grid-column: 2; 
+  grid-row: 2;
+  background: url('assets/borders/middlemiddle.png') repeat;
+  background-size: auto;
+}
+
+/* ============================================
+   ACHIEVEMENT CONTENT
+   ============================================ */
+
+.achievement-content-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 18px;
+  background: rgba(0, 0, 0, 0.9);
+  position: relative;
+  z-index: 1;
+  margin: 8px;
+  width: calc(100% - 16px);
+}
+
+/* Tier-specific backgrounds */
+.achievement[data-tier="1"] .achievement-content-wrapper {
+  background: linear-gradient(135deg, rgba(205, 127, 50, 0.2) 0%, rgba(0, 0, 0, 0.9) 100%);
+  border-left: 3px solid #CD7F32;
+}
+
+.achievement[data-tier="2"] .achievement-content-wrapper {
+  background: linear-gradient(135deg, rgba(192, 192, 192, 0.2) 0%, rgba(0, 0, 0, 0.9) 100%);
+  border-left: 3px solid #C0C0C0;
+}
+
+.achievement[data-tier="3"] .achievement-content-wrapper {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(0, 0, 0, 0.9) 100%);
+  border-left: 3px solid #FFD700;
+}
+
+.achievement[data-tier="4"] .achievement-content-wrapper {
+  background: linear-gradient(135deg, rgba(147, 112, 219, 0.25) 0%, rgba(0, 0, 0, 0.9) 100%);
+  border-left: 3px solid #9370DB;
+}
+
+.achievement[data-tier="5"] .achievement-content-wrapper {
+  background: linear-gradient(135deg, rgba(155, 89, 182, 0.3) 0%, rgba(0, 0, 0, 0.9) 100%);
+  border-left: 3px solid #E066FF;
+  animation: glowBg 2s ease-in-out infinite;
+}
+
+@keyframes glowBg {
+  0%, 100% {
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.3) 0%, rgba(0, 0, 0, 0.9) 100%);
+    box-shadow: inset 0 0 20px rgba(155, 89, 182, 0.4);
+  }
+  50% {
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.4) 0%, rgba(0, 0, 0, 0.9) 100%);
+    box-shadow: inset 0 0 30px rgba(155, 89, 182, 0.6);
+  }
+}
+
+/* ============================================
+   ACHIEVEMENT ICON
+   ============================================ */
+
+.achievement-icon {
+  width: 52px;
+  height: 52px;
+  margin-right: 16px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  image-rendering: pixelated;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.achievement-icon img {
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  object-fit: contain;
+}
+
+/* ============================================
+   ACHIEVEMENT TEXT
+   ============================================ */
+
+.achievement-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.achievement-title {
+  font-size: 11px;
+  color: #FFFF00;
+  text-shadow: 2px 2px #000;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+}
+
+.achievement-description {
+  font-size: 8px;
+  color: #FFFFFF;
+  text-shadow: 1px 1px #000;
+  line-height: 1.5;
+  opacity: 0.95;
+}
+
+/* Tier-specific title colors */
+.achievement[data-tier="1"] .achievement-title {
+  color: #FF8C42;
+  text-shadow: 2px 2px #000, 0 0 10px rgba(205, 127, 50, 0.5);
+}
+
+.achievement[data-tier="2"] .achievement-title {
+  color: #E8E8E8;
+  text-shadow: 2px 2px #000, 0 0 10px rgba(192, 192, 192, 0.5);
+}
+
+.achievement[data-tier="3"] .achievement-title {
+  color: #FFD700;
+  text-shadow: 2px 2px #000, 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+.achievement[data-tier="4"] .achievement-title {
+  color: #B19CD9;
+  text-shadow: 2px 2px #000, 0 0 10px rgba(147, 112, 219, 0.6);
+}
+
+.achievement[data-tier="5"] .achievement-title {
+  color: #E066FF;
+  text-shadow: 2px 2px #000;
+  animation: titleGlow 2s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% {
+    text-shadow: 2px 2px #000, 0 0 10px rgba(224, 102, 255, 0.6);
+  }
+  50% {
+    text-shadow: 2px 2px #000, 0 0 20px rgba(224, 102, 255, 0.9);
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  .demo-container h1 {
+    font-size: 14px;
+  }
+
+  .demo-btn {
+    font-size: 8px;
+    padding: 12px 20px;
+  }
+
+  .stats-panel {
+    gap: 15px;
+  }
+
+  .stat-item {
+    min-width: 120px;
+    padding: 12px 20px;
+  }
+
+  .planet-btn {
+    font-size: 8px;
+    padding: 10px 15px;
+  }
+
+  .achievement-list {
+    padding: 15px;
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 600px) {
+  .achievement-container {
+    right: 10px;
+    top: 10px;
+    left: 10px;
+  }
+  
+  .achievement {
+    min-width: auto;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .achievement-title {
+    font-size: 9px;
+  }
+  
+  .achievement-description {
+    font-size: 7px;
+  }
+
+  .achievement-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 28px;
+  }
+
+  .demo-buttons {
+    gap: 10px;
+  }
+
+  .demo-btn {
+    font-size: 7px;
+    padding: 10px 15px;
+  }
+}
