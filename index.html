@@ -3,442 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Minecraft Achievement System</title>
+<title>Ultimate Completionist Achievement System</title>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Press Start 2P', cursive;
-  background: #2d2d2d;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-}
-
-.demo-container {
-  text-align: center;
-}
-
-.demo-container h1 {
-  color: #fff;
-  font-size: 16px;
-  margin-bottom: 30px;
-  text-shadow: 2px 2px #000;
-}
-
-.demo-buttons {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  margin-bottom: 40px;
-  flex-wrap: wrap;
-}
-
-.demo-btn {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 10px;
-  padding: 15px 25px;
-  background: #5a5a5a;
-  color: #fff;
-  border: 3px solid #000;
-  cursor: pointer;
-  text-shadow: 2px 2px #000;
-  transition: all 0.1s;
-  image-rendering: pixelated;
-}
-
-.demo-btn:hover {
-  background: #7a7a7a;
-  transform: scale(1.05);
-}
-
-.demo-btn:active {
-  transform: scale(0.95);
-}
-
-/* Achievement Notification Container */
-.achievement-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 9999;
-  pointer-events: none;
-}
-
-/* Achievement Box */
-.achievement {
-  display: flex;
-  align-items: center;
-  padding: 16px;
-  margin-bottom: 10px;
-  min-width: 300px;
-  max-width: 350px;
-  background: rgba(0, 0, 0, 0.85);
-  border: 4px solid;
-  border-image: repeating-linear-gradient(
-    90deg,
-    #555 0px, #555 2px,
-    #888 2px, #888 4px
-  ) 4;
-  box-shadow: 
-    0 0 0 2px #000,
-    4px 4px 0 2px rgba(0, 0, 0, 0.5);
-  animation: slideIn 0.5s ease-out, slideOut 0.5s ease-in 4.5s forwards;
-  opacity: 0;
-  transform: translateX(400px);
-  image-rendering: pixelated;
-  position: relative;
-}
-
-/* Achievement variants */
-.achievement.gold {
-  border-color: #FFD700;
-  background: rgba(255, 215, 0, 0.1);
-}
-
-.achievement.silver {
-  border-color: #C0C0C0;
-  background: rgba(192, 192, 192, 0.1);
-}
-
-.achievement.bronze {
-  border-color: #CD7F32;
-  background: rgba(205, 127, 50, 0.1);
-}
-
-.achievement.legendary {
-  border-color: #9b59b6;
-  background: rgba(155, 89, 182, 0.15);
-  animation: slideIn 0.5s ease-out, glow 2s ease-in-out infinite, slideOut 0.5s ease-in 4.5s forwards;
-}
-
-@keyframes glow {
-  0%, 100% {
-    box-shadow: 
-      0 0 0 2px #000,
-      0 0 20px rgba(155, 89, 182, 0.6),
-      4px 4px 0 2px rgba(0, 0, 0, 0.5);
-  }
-  50% {
-    box-shadow: 
-      0 0 0 2px #000,
-      0 0 30px rgba(155, 89, 182, 0.9),
-      4px 4px 0 2px rgba(0, 0, 0, 0.5);
-  }
-}
-
-@keyframes slideIn {
-  0% {
-    opacity: 0;
-    transform: translateX(400px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideOut {
-  0% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(400px);
-  }
-}
-
-/* Icon */
-.achievement-icon {
-  width: 48px;
-  height: 48px;
-  margin-right: 16px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  background: rgba(0, 0, 0, 0.3);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  image-rendering: pixelated;
-}
-
-/* Text Content */
-.achievement-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.achievement-title {
-  font-size: 11px;
-  color: #FFFF00;
-  text-shadow: 2px 2px #000;
-  line-height: 1.4;
-  letter-spacing: 1px;
-}
-
-.achievement-description {
-  font-size: 8px;
-  color: #FFFFFF;
-  text-shadow: 1px 1px #000;
-  line-height: 1.4;
-  opacity: 0.9;
-}
-
-/* Tier-specific title colors */
-.achievement.gold .achievement-title {
-  color: #FFD700;
-}
-
-.achievement.silver .achievement-title {
-  color: #E8E8E8;
-}
-
-.achievement.bronze .achievement-title {
-  color: #FF8C42;
-}
-
-.achievement.legendary .achievement-title {
-  color: #E066FF;
-  animation: titleGlow 2s ease-in-out infinite;
-}
-
-@keyframes titleGlow {
-  0%, 100% {
-    text-shadow: 2px 2px #000, 0 0 5px rgba(224, 102, 255, 0.5);
-  }
-  50% {
-    text-shadow: 2px 2px #000, 0 0 15px rgba(224, 102, 255, 0.9);
-  }
-}
-
-/* Example achievement display */
-.example-section {
-  margin-top: 40px;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-}
-
-.example-section h2 {
-  color: #FFFF00;
-  font-size: 12px;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px #000;
-}
-
-.example-achievements {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.example-achievements .achievement {
-  position: static;
-  opacity: 1;
-  transform: none;
-  animation: none;
-  pointer-events: auto;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .achievement-container {
-    right: 10px;
-    top: 10px;
-    left: 10px;
-  }
-  
-  .achievement {
-    min-width: auto;
-    width: 100%;
-  }
-  
-  .achievement-title {
-    font-size: 9px;
-  }
-  
-  .achievement-description {
-    font-size: 7px;
-  }
-}
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <div class="demo-container">
-  <h1>Minecraft Achievement System</h1>
+  <h1>Ultimate Completionist</h1>
   
   <div class="demo-buttons">
-    <button class="demo-btn" onclick="showAchievement('bronze')">Bronze Achievement</button>
-    <button class="demo-btn" onclick="showAchievement('silver')">Silver Achievement</button>
-    <button class="demo-btn" onclick="showAchievement('gold')">Gold Achievement</button>
-    <button class="demo-btn" onclick="showAchievement('legendary')">Legendary Achievement</button>
+    <button class="demo-btn" onclick="testAchievement('physical_t1_a1')">Test Tier 1</button>
+    <button class="demo-btn" onclick="testAchievement('physical_t3_a1')">Test Tier 3</button>
+    <button class="demo-btn" onclick="testAchievement('physical_t5_a1')">Test Tier 5</button>
+    <button class="demo-btn" onclick="loadFromJSON()">Load Achievements</button>
   </div>
 
-  <div class="example-section">
-    <h2>Achievement Preview</h2>
-    <div class="example-achievements">
-      <div class="achievement bronze">
-        <div class="achievement-icon">⛏️</div>
-        <div class="achievement-content">
-          <div class="achievement-title">First Steps</div>
-          <div class="achievement-description">Complete your first workout</div>
-        </div>
-      </div>
-
-      <div class="achievement silver">
-        <div class="achievement-icon">🏃</div>
-        <div class="achievement-content">
-          <div class="achievement-title">5K Runner</div>
-          <div class="achievement-description">Run 5 kilometers without stopping</div>
-        </div>
-      </div>
-
-      <div class="achievement gold">
-        <div class="achievement-icon">💪</div>
-        <div class="achievement-content">
-          <div class="achievement-title">Strength Master</div>
-          <div class="achievement-description">Complete 100 push-ups in one session</div>
-        </div>
-      </div>
-
-      <div class="achievement legendary">
-        <div class="achievement-icon">👑</div>
-        <div class="achievement-content">
-          <div class="achievement-title">Legendary</div>
-          <div class="achievement-description">Achieve grandmaster status</div>
-        </div>
-      </div>
+  <div class="stats-panel">
+    <div class="stat-item">
+      <span class="stat-label">Progress:</span>
+      <span class="stat-value" id="progressValue">0/0</span>
     </div>
+    <div class="stat-item">
+      <span class="stat-label">Points:</span>
+      <span class="stat-value" id="pointsValue">0</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Level:</span>
+      <span class="stat-value" id="levelValue">1</span>
+    </div>
+  </div>
+
+  <div class="planet-selector" id="planetSelector">
+    <!-- Populated by JavaScript -->
+  </div>
+
+  <div class="achievement-list" id="achievementList">
+    <p style="color: #aaa; font-size: 10px; text-align: center; padding: 40px;">
+      Click "Load Achievements" to start
+    </p>
   </div>
 </div>
 
 <!-- Achievement notification container -->
 <div class="achievement-container" id="achievementContainer"></div>
 
-<script>
-// Achievement data
-const achievements = {
-  bronze: {
-    icon: '⛏️',
-    title: 'First Steps',
-    description: 'Complete your first workout',
-    tier: 'bronze'
-  },
-  silver: {
-    icon: '🏃',
-    title: '5K Runner',
-    description: 'Run 5 kilometers without stopping',
-    tier: 'silver'
-  },
-  gold: {
-    icon: '💪',
-    title: 'Strength Master',
-    description: 'Complete 100 push-ups',
-    tier: 'gold'
-  },
-  legendary: {
-    icon: '👑',
-    title: 'Legendary Achievement',
-    description: 'Achieve grandmaster status',
-    tier: 'legendary'
-  }
-};
-
-// Show achievement notification
-function showAchievement(type) {
-  const achievement = achievements[type];
-  const container = document.getElementById('achievementContainer');
-  
-  // Create achievement element
-  const achievementEl = document.createElement('div');
-  achievementEl.className = `achievement ${achievement.tier}`;
-  
-  achievementEl.innerHTML = `
-    <div class="achievement-icon">${achievement.icon}</div>
-    <div class="achievement-content">
-      <div class="achievement-title">${achievement.title}</div>
-      <div class="achievement-description">${achievement.description}</div>
-    </div>
-  `;
-  
-  // Add to container
-  container.appendChild(achievementEl);
-  
-  // Play sound (optional - uncomment if you have a sound file)
-  // const audio = new Audio('achievement.mp3');
-  // audio.play();
-  
-  // Remove after animation completes
-  setTimeout(() => {
-    achievementEl.remove();
-  }, 5000);
-}
-
-// Example: Trigger achievement programmatically
-function triggerAchievement(achievementId, customData = {}) {
-  const achievement = achievements[achievementId];
-  if (!achievement) return;
-  
-  // You can override achievement data
-  const data = { ...achievement, ...customData };
-  
-  const container = document.getElementById('achievementContainer');
-  const achievementEl = document.createElement('div');
-  achievementEl.className = `achievement ${data.tier}`;
-  
-  achievementEl.innerHTML = `
-    <div class="achievement-icon">${data.icon}</div>
-    <div class="achievement-content">
-      <div class="achievement-title">${data.title}</div>
-      <div class="achievement-description">${data.description}</div>
-    </div>
-  `;
-  
-  container.appendChild(achievementEl);
-  
-  setTimeout(() => {
-    achievementEl.remove();
-  }, 5000);
-}
-
-// Custom achievement function
-function createCustomAchievement(icon, title, description, tier = 'bronze') {
-  const container = document.getElementById('achievementContainer');
-  const achievementEl = document.createElement('div');
-  achievementEl.className = `achievement ${tier}`;
-  
-  achievementEl.innerHTML = `
-    <div class="achievement-icon">${icon}</div>
-    <div class="achievement-content">
-      <div class="achievement-title">${title}</div>
-      <div class="achievement-description">${description}</div>
-    </div>
-  `;
-  
-  container.appendChild(achievementEl);
-  
-  setTimeout(() => {
-    achievementEl.remove();
-  }, 5000);
-}
-
-// Example usage in console:
-// createCustomAchievement('🎯', 'Sharpshooter', 'Hit 100 targets', 'gold');
-</script>
+<script src="script.js"></script>
 
 </body>
-</html>
+</html>f
